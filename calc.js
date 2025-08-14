@@ -9,28 +9,36 @@ var opeAnterior = '';
 var operacion = undefined;
 
 
-botonNumeros.forEach(function(boton) {
-    boton.addEventListener('click', function() {
+botonNumeros.forEach(function (boton) {
+    boton.addEventListener('click', function () {
         agregarNumero(boton.innerText);
     });
 });
 
-botonOperadores.forEach(function(boton) {
-    boton.addEventListener('click', function() {
-       seleccionarOperacion(boton.innerText);
+botonOperadores.forEach(function (boton) {
+    boton.addEventListener('click', function () {
+        agregarSimbolo(boton.innerText);
+        seleccionarOperacion(boton.innerText);
+
     });
 });
 
-botonIgual.addEventListener('click', function() {
+botonIgual.addEventListener('click', function () {
     calcularResultado();
     actualizarDisplay();
 });
 
-botonBorrar.addEventListener('click', function() {
-    console.log('Borrar');
+botonBorrar.addEventListener('click', function () {
+
     borrar();
     actualizarDisplay();
 });
+function agregarSimbolo(simbolo) {
+
+    if (opeActual === '') return;
+    opeActual = opeActual.toString() + simbolo.toString();
+    actualizarDisplay();
+}
 
 function agregarNumero(numero) {
     opeActual = opeActual.toString() + numero.toString();
